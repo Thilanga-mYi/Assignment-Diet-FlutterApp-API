@@ -409,17 +409,6 @@ class GoalController extends Controller
         return $meal_values;
     }
 
-    public function clearMeal(Request $reqeust)
-    {
-        Session::forget('dayMeal');
-        return response(
-            [
-                "message" => "Successfully clear meal items from session",
-            ],
-            200
-        );
-    }
-
     public function payment(Request $request)
     {
         error_log(json_encode($request->all()));
@@ -448,5 +437,23 @@ class GoalController extends Controller
             ],
             200
         ]);
+    }
+
+    public function goalHistory(Request $request)
+    {
+        error_log(json_encode($request->all()));
+        $data = [];
+        $records = Goal::where('user_id', $request->user)->where('status', 4)->get();
+
+        foreach ($records as $key => $goal) {
+            $data[] = [
+                'goal_type_id' => $goal->goal_type_id,
+                'body_type' => $goal->body_type,
+                'weight' => $goal->weight,
+                'goal_weight' => $goal->goal_weight,
+            ];
+        }
+
+        return ['goal_list' => $data];
     }
 }

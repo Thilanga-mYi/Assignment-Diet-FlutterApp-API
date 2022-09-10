@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/enroll',[GoalController::class,'enroll']);
+Route::post('/history',[GoalController::class,'goalHistory']);
 Route::post('/get_goal_details',[GoalController::class,'getGoalDetails']);
 Route::post('/enroll_payment',[GoalController::class,'payment']);
 

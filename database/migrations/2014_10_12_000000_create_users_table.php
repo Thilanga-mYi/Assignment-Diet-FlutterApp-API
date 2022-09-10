@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_type_id')->default(2);
             $table->string('name');
-            $table->date('dob');
-            $table->string('mobile_number');
+            $table->date('dob')->nullable();
+            $table->string('mobile_number')->nullable();
             $table->tinyInteger('gender')->default(1);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
